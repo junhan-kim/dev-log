@@ -26,13 +26,24 @@ frontend는 간단하게
 - 패키지 매니징: Poetry
 - 린터: Ruff
 - 코드 버전 관리: Git
-
 ## 프론트엔드
 - 프레임워크: React
 
-# TODO
+
+# 실행
+## alembic
+table 변동이 있을때 backend 컨테이너 내부로 접속 후
+`bash scripts/db_migrate.sh`
+
+## 서비스 실행
+`docker-compose up -d`
+
+
+# 작업
+## TODO
 - OpenAPI.json 자동 생성 추가
 - 게시판 추가
 - Github Action 추가 (pre-commit 연동 가능한지 확인)
 
-# Version
+# 배포
+## Version
