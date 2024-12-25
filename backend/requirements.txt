@@ -7,3 +7,5 @@ pydantic[email]
 pydantic-settings
 pytest
 httpx
+python-jose
+passlib
