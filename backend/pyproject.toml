@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "dev-log"
+version = "0.1.0"
+description = "Your FastAPI project"
+authors = ["https://github.com/junhan-kim"]
+readme = "README.md"
+packages = [{ include = "app" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+fastapi = "0.115.6"
+alembic = "1.14.0"
+uvicorn = "0.34.0"
+sqlalchemy = "2.0.19"
+psycopg2-binary = "2.9.10"
+pydantic = { extras = ["email"], version = "2.10.4" }
+pydantic-settings = "2.7.0"
+python-jose = "3.3.0"
+passlib = "1.7.4"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+httpx = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

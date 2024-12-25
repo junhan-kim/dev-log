@@ -2,8 +2,17 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Poetry 설치
+RUN apt-get update && apt-get install -y curl && \
+    curl -sSL https://install.python-poetry.org | python3 - && \
+    apt-get clean
+
+ENV POETRY_VIRTUALENVS_CREATE=false
+
+COPY pyproject.toml ./
+
+RUN /root/.local/bin/poetry lock && \
+    /root/.local/bin/poetry install --no-root
 
 COPY . .
 
