@@ -14,7 +14,6 @@ frontend는 간단하게
 - API 작성
 - 테스트 코드 작성
 
-
 # 기술 스택
 ## 백엔드
 - 환경: docker, docker-compose
@@ -30,3 +29,10 @@ frontend는 간단하게
 
 ## 프론트엔드
 - 프레임워크: React
+
+# TODO
+- OpenAPI.json 자동 생성 추가
+- 게시판 추가
+- Github Action 추가 (pre-commit 연동 가능한지 확인)
+
+# Version
