@@ -4,5 +4,6 @@ uvicorn
 sqlalchemy
 psycopg2-binary
 pydantic[email]
+pydantic-settings
 pytest
 httpx

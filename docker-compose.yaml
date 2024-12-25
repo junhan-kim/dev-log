@@ -9,11 +9,23 @@ services:
       DATABASE_URL: postgresql://admin:admin@db:5432/blog_db
     ports:
       - "8000:8000"
+    env_file:
+      - ./backend/.env
     depends_on:
       db:
         condition: service_healthy
     volumes:
       - ./backend/alembic:/app/alembic
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: react_frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env
+    command: npm start
 
   db:
     image: postgres:15
