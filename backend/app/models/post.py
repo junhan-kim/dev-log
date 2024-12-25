@@ -19,5 +19,4 @@ class Post(Base):
     date_updated = Column(DateTime, default=lambda: datetime.now(
         timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
-    author_id = Column(Integer, ForeignKey("users.id"))
     author = relationship("User", back_populates="posts")
