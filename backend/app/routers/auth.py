@@ -1,5 +1,5 @@
 from app.database import get_db
-from app.dependencies.user import get_current_user
+from app.dependencies.auth import get_current_user
 from app.schemas.auth import Token, UserLogin
 from app.services import user_service
 from app.utils.crypto import verify_password

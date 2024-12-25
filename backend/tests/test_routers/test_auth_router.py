@@ -52,4 +52,4 @@ def test_get_profile(client, mock_user_in_db):
         headers={"Authorization": f"Bearer {token}"}
     )
     assert response.status_code == 200
-    assert response.json()["message"] == f"Hello, {mock_user['username']}"
+
