@@ -16,6 +16,7 @@ frontend는 간단하게
 
 
 # 기술 스택
+## 백엔드
 - 환경: docker, docker-compose
 - 서버 프레임워크: FastAPI
 - DB: PostgresDB
@@ -26,3 +27,6 @@ frontend는 간단하게
 - 패키지 매니징: Poetry
 - 린터: Ruff
 - 코드 버전 관리: Git
+
+## 프론트엔드
+- 프레임워크: React
