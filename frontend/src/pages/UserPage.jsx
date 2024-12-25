@@ -4,6 +4,7 @@ import UserForm from '../components/UserForm'
 import UserList from '../components/UserList'
 import '../styles/UserPage.css'
 
+
 const UserPage = () => {
     const [users, setUsers] = useState([])
     const [currentUser, setCurrentUser] = useState({
