@@ -14,19 +14,4 @@ api.interceptors.request.use((config) => {
 });
 
 
-export const fetchPosts = async () => {
-    const response = await api.get("/posts/");
-    return response.data;
-};
-
-export const fetchPostById = async (id) => {
-    const response = await api.get(`/posts/${id}`);
-    return response.data;
-};
-
-export const createPost = async (post) => {
-    const response = await api.post("/posts/", post);
-    return response.data;
-};
-
 export default api

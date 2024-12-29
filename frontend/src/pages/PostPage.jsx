@@ -36,7 +36,6 @@ const PostPage = () => {
                     새 글 작성
                 </button>
             </div>
-            {/* PostList 컴포넌트 사용 */}
             <PostList posts={posts} />
         </div>
     );
