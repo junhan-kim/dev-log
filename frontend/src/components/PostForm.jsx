@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createPost } from "../api/posts";
 import "../styles/PostForm.css";
 
-const PostForm = () => {
+const PostForm = ({ onSubmit }) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [error, setError] = useState("");
@@ -14,8 +13,8 @@ const PostForm = () => {
         setError("");
 
         try {
-            await createPost({ title, content });
-            navigate("/dashboard/posts"); // 게시판 목록으로 리다이렉트
+            await onSubmit({ title, content });
+            navigate("/dashboard/posts"); // 게시판 목록 페이지로 이동
         } catch (err) {
             setError("게시글 작성 중 문제가 발생했습니다.");
         }
@@ -23,7 +22,6 @@ const PostForm = () => {
 
     return (
         <div className="post-form">
-            <h1>게시글 작성</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="title">제목</label>

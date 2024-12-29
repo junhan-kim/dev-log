@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchPosts } from "../api/posts";
-import { useNavigate } from "react-router-dom";
+import PostList from "../components/PostList";
 import "../styles/PostPage.css";
+import { useNavigate } from "react-router-dom";
+
 
 const PostPage = () => {
     const [posts, setPosts] = useState([]);
@@ -34,14 +36,8 @@ const PostPage = () => {
                     새 글 작성
                 </button>
             </div>
-            <div className="post-list">
-                {posts.map((post) => (
-                    <div key={post.id} className="post-item">
-                        <h2>{post.title}</h2>
-                        <p>{new Date(post.date_created).toLocaleDateString()}</p>
-                    </div>
-                ))}
-            </div>
+            {/* PostList 컴포넌트 사용 */}
+            <PostList posts={posts} />
         </div>
     );
 };

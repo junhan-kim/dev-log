@@ -6,7 +6,7 @@ const PostList = ({ posts }) => {
     const navigate = useNavigate();
 
     if (!posts || posts.length === 0) {
-        return <p>게시글이 없습니다.</p>;
+        return <p className="no-posts">게시물이 없습니다.</p>;
     }
 
     return (
