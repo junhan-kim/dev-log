@@ -17,3 +17,4 @@ export const createPost = async (post) => {
     const response = await api.post("/posts/", post);
     return response.data;
 };
+

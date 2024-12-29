@@ -8,22 +8,23 @@ const PostDetailPage = () => {
     const [post, setPost] = useState(null);
 
     useEffect(() => {
-        const loadPost = async () => {
+        const getPost = async () => {
             try {
                 const data = await fetchPostById(id);
                 setPost(data);
-            } catch (err) {
-                console.error("Failed to fetch post:", err);
+            } catch (error) {
+                console.error("Failed to fetch post:", error);
             }
         };
-        loadPost();
+        getPost();
     }, [id]);
 
-    if (!post) return <p>Loading post...</p>;
+    if (!post) return <div className="post-detail">로딩 중...</div>;
 
     return (
-        <div className="post-detail-page">
+        <div className="post-detail">
             <h1>{post.title}</h1>
+            <p className="post-date">{new Date(post.date_created).toLocaleDateString()}</p>
             <p>{post.content}</p>
         </div>
     );

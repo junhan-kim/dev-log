@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import "../styles/LoginPage.css";
 
-
 const LoginPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -17,7 +16,7 @@ const LoginPage = () => {
         try {
             const response = await api.post("/auth/login", { username, password });
             localStorage.setItem("accessToken", response.data.access_token);
-            navigate("/users");
+            navigate("/dashboard/users");
         } catch (err) {
             setError("Invalid username or password");
         }

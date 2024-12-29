@@ -1,49 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { fetchPosts, createPost } from "../api/posts";
+import { fetchPosts } from "../api/posts";
+import { useNavigate } from "react-router-dom";
+import "../styles/PostPage.css";
 
 const PostPage = () => {
     const [posts, setPosts] = useState([]);
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+    const navigate = useNavigate();
+
+    const loadPosts = async () => {
+        try {
+            const data = await fetchPosts();
+            const sortedPosts = data.sort(
+                (a, b) => new Date(b.date_created) - new Date(a.date_created)
+            );
+            setPosts(sortedPosts);
+        } catch (error) {
+            console.error("Failed to fetch posts:", error);
+        }
+    };
 
     useEffect(() => {
-        const loadPosts = async () => {
-            const data = await fetchPosts();
-            setPosts(data);
-        };
         loadPosts();
     }, []);
 
-    const handleCreatePost = async (e) => {
-        e.preventDefault();
-        const newPost = await createPost({ title, content });
-        setPosts([newPost, ...posts]);
-        setTitle("");
-        setContent("");
-    };
-
     return (
-        <div>
-            <h1>Posts</h1>
-            <form onSubmit={handleCreatePost}>
-                <input
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Title"
-                />
-                <textarea
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    placeholder="Content"
-                />
-                <button type="submit">Create Post</button>
-            </form>
-            {posts.map((post) => (
-                <div key={post.id}>
-                    <h2>{post.title}</h2>
-                    <p>{post.content}</p>
-                </div>
-            ))}
+        <div className="post-page">
+            <div className="post-page-header">
+                <h1>게시판</h1>
+                <button
+                    className="create-post-button"
+                    onClick={() => navigate("/dashboard/posts/new")}
+                >
+                    새 글 작성
+                </button>
+            </div>
+            <div className="post-list">
+                {posts.map((post) => (
+                    <div key={post.id} className="post-item">
+                        <h2>{post.title}</h2>
+                        <p>{new Date(post.date_created).toLocaleDateString()}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

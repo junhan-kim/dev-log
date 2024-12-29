@@ -1,0 +1,19 @@
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+    color: #1d6fa5;
+}
