@@ -1,10 +1,15 @@
 import api from "./axios";
 
-// 게시글 가져오기
-export const fetchPosts = async () => {
-    const response = await api.get("/posts/");
-    return response.data;
+export const fetchPosts = async (page = 1, limit = 10) => {
+    const skip = (page - 1) * limit;
+    const response = await api.get(`/posts/?skip=${skip}&limit=${limit}`);
+    console.log("Fetched posts:", response.data);
+    return {
+        posts: response.data.posts || [],
+        total_count: response.data.total_count || 0,
+    };
 };
+
 
 // 게시글 상세 가져오기
 export const fetchPostById = async (id) => {

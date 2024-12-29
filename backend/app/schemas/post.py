@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict
 
@@ -25,3 +25,8 @@ class PostResponse(PostBase):
     date_updated: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class PostsWithCountResponse(BaseModel):
+    posts: List[PostResponse]
+    total_count: int

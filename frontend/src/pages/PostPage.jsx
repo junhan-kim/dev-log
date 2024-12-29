@@ -4,26 +4,32 @@ import PostList from "../components/PostList";
 import "../styles/PostPage.css";
 import { useNavigate } from "react-router-dom";
 
-
 const PostPage = () => {
     const [posts, setPosts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const navigate = useNavigate();
+    const limit = 10;
 
-    const loadPosts = async () => {
+    const loadPosts = async (page) => {
         try {
-            const data = await fetchPosts();
-            const sortedPosts = data.sort(
-                (a, b) => new Date(b.date_created) - new Date(a.date_created)
-            );
-            setPosts(sortedPosts);
+            const { posts: newPosts, total_count } = await fetchPosts(page, limit);
+            setPosts(newPosts);
+            setTotalPages(Math.ceil(total_count / limit));
         } catch (error) {
             console.error("Failed to fetch posts:", error);
         }
     };
 
     useEffect(() => {
-        loadPosts();
-    }, []);
+        loadPosts(currentPage);
+    }, [currentPage]);
+
+    const handlePageChange = (page) => {
+        if (page > 0 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
 
     return (
         <div className="post-page">
@@ -37,6 +43,17 @@ const PostPage = () => {
                 </button>
             </div>
             <PostList posts={posts} />
+            <div className="pagination">
+                {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                        key={index}
+                        className={currentPage === index + 1 ? "active" : ""}
+                        onClick={() => handlePageChange(index + 1)}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+            </div>
         </div>
     );
 };

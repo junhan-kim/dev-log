@@ -1,6 +1,7 @@
 from app.database import get_db
 from app.dependencies.auth import get_current_user
-from app.schemas.post import PostCreate, PostResponse, PostUpdate
+from app.schemas.post import (PostCreate, PostResponse, PostsWithCountResponse,
+                              PostUpdate)
 from app.services import post_service
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
@@ -18,9 +19,9 @@ def read_post(post_id: int, db: Session = Depends(get_db)):
     return post_service.read_post(post_id, db)
 
 
-@router.get("/", response_model=list[PostResponse])
+@router.get("/", response_model=PostsWithCountResponse)
 def read_posts(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
-    return post_service.read_posts(skip, limit, db)
+    return post_service.read_posts_with_count(skip, limit, db)
 
 
 @router.put("/{post_id}", response_model=PostResponse)

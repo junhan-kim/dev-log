@@ -24,9 +24,13 @@ def read_post(post_id: int, db: Session) -> PostResponse:
     return post
 
 
-def read_posts(skip: int, limit: int, db: Session) -> list[PostResponse]:
+def read_posts_with_count(skip: int, limit: int, db: Session) -> dict:
+    total_count = db.query(Post).count()
     posts = db.query(Post).offset(skip).limit(limit).all()
-    return posts
+    return {
+        "posts": posts,
+        "total_count": total_count
+    }
 
 
 def update_post(post_id: int, post: PostUpdate, db: Session, author_id: int) -> PostResponse:

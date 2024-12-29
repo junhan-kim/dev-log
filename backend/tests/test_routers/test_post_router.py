@@ -66,9 +66,15 @@ def test_read_posts(client, test_post):
     response = client.get("/posts/")
     assert response.status_code == 200
     data = response.json()
-    assert len(data) > 0
-    assert data[0]["title"] == test_post["title"]
-    assert data[0]["content"] == test_post["content"]
+
+    posts = data["posts"]
+    total_count = data["total_count"]
+
+    # assertions
+    assert len(posts) > 0
+    assert total_count > 0
+    assert posts[0]["title"] == test_post["title"]
+    assert posts[0]["content"] == test_post["content"]
 
 
 def test_update_post(client, test_post, test_user):
