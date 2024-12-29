@@ -70,11 +70,23 @@ def test_read_posts(client, test_post):
     posts = data["posts"]
     total_count = data["total_count"]
 
-    # assertions
+    # 기본 정렬(desc) 검증
     assert len(posts) > 0
     assert total_count > 0
     assert posts[0]["title"] == test_post["title"]
     assert posts[0]["content"] == test_post["content"]
+
+    # 오래된 순 정렬(asc) 테스트
+    response = client.get("/posts/?order=asc")
+    assert response.status_code == 200
+    data = response.json()
+
+    posts = data["posts"]
+    assert len(posts) > 0
+
+    # 오래된 순으로 정렬 확인
+    dates = [post["date_created"] for post in posts]
+    assert dates == sorted(dates), "Posts are not sorted in ascending order."
 
 
 def test_update_post(client, test_post, test_user):

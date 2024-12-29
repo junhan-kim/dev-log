@@ -8,12 +8,13 @@ const PostPage = () => {
     const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [order, setOrder] = useState("desc");
     const navigate = useNavigate();
     const limit = 10;
 
-    const loadPosts = async (page) => {
+    const loadPosts = async (page, orderOption) => {
         try {
-            const { posts: newPosts, total_count } = await fetchPosts(page, limit);
+            const { posts: newPosts, total_count } = await fetchPosts(page, limit, orderOption);
             setPosts(newPosts);
             setTotalPages(Math.ceil(total_count / limit));
         } catch (error) {
@@ -22,8 +23,13 @@ const PostPage = () => {
     };
 
     useEffect(() => {
-        loadPosts(currentPage);
-    }, [currentPage]);
+        loadPosts(currentPage, order);
+    }, [currentPage, order]);
+
+    const handleOrderChange = (e) => {
+        setOrder(e.target.value);
+        setCurrentPage(1);
+    };
 
     const handlePageChange = (page) => {
         if (page > 0 && page <= totalPages) {
@@ -41,6 +47,10 @@ const PostPage = () => {
                 >
                     새 글 작성
                 </button>
+                <select value={order} onChange={handleOrderChange} className="order-select">
+                    <option value="desc">최신순</option>
+                    <option value="asc">오래된 순</option>
+                </select>
             </div>
             <PostList posts={posts} />
             <div className="pagination">

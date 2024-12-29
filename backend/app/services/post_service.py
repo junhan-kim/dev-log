@@ -24,12 +24,17 @@ def read_post(post_id: int, db: Session) -> PostResponse:
     return post
 
 
-def read_posts_with_count(skip: int, limit: int, db: Session) -> dict:
-    total_count = db.query(Post).count()
-    posts = db.query(Post).offset(skip).limit(limit).all()
+def read_posts(skip: int, limit: int, order: str, db: Session) -> dict:
+    query = db.query(Post)
+    if order == "asc":
+        query = query.order_by(Post.date_created.asc())  # 오름차순 정렬
+    else:
+        query = query.order_by(Post.date_created.desc())  # 기본값 내림차순 정렬
+    total_count = query.count()
+    posts = query.offset(skip).limit(limit).all()
     return {
         "posts": posts,
-        "total_count": total_count
+        "total_count": total_count,
     }
 
 

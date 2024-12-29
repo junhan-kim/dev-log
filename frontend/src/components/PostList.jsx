@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/PostPage.css";
+import "../styles/PostList.css";
 
 const PostList = ({ posts }) => {
     const navigate = useNavigate();

@@ -1,0 +1,13 @@
+.post-item {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-item:hover {
+    background-color: #f9f9f9;
+}
