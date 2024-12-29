@@ -1,6 +1,6 @@
 import React from "react";
-import { createPost } from "../api/posts";
-import PostForm from "../components/PostForm";
+import { createPost } from "../../api/posts";
+import PostForm from "../../components/post/PostForm";
 
 const PostCreatePage = () => {
     const handlePostCreate = async (postData) => {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import api from '../api/axios'
-import UserForm from '../components/UserForm'
-import UserList from '../components/UserList'
-import '../styles/UserPage.css'
+import api from '../../api/axios'
+import UserForm from '../../components/user/UserForm'
+import UserList from '../../components/user/UserList'
+import '../../styles/user/UserPage.css'
 
 
 const UserPage = () => {

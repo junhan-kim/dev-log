@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/PostForm.css";
+import "../../styles/post/PostForm.css";
 
 const PostForm = ({ onSubmit }) => {
     const [title, setTitle] = useState("");

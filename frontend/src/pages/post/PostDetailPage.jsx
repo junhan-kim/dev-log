@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchPostById } from "../api/posts";
-import "../styles/PostDetailPage.css";
+import { fetchPostById } from "../../api/posts";
+import "../../styles/post/PostDetailPage.css";
 
 const PostDetailPage = () => {
     const { id } = useParams();

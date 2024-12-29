@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { fetchPosts } from "../api/posts";
-import PostList from "../components/PostList";
-import "../styles/PostPage.css";
+import { fetchPosts } from "../../api/posts";
+import PostList from "../../components/post/PostList";
+import "../../styles/post/PostPage.css";
 import { useNavigate } from "react-router-dom";
 
 const PostPage = () => {

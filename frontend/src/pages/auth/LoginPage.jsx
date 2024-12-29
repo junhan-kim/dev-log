@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../api/axios";
-import "../styles/LoginPage.css";
+import api from "../../api/axios";
+import "../../styles/auth/LoginPage.css";
 
 const LoginPage = () => {
     const [username, setUsername] = useState("");

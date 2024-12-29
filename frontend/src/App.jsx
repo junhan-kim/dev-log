@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import UserPage from "./pages/UserPage";
-import PostPage from "./pages/PostPage";
-import PostCreatePage from "./pages/PostCreatePage";
-import PostDetailPage from "./pages/PostDetailPage";
+import LoginPage from "./pages/auth/LoginPage";
+import UserPage from "./pages/user/UserPage";
+import PostPage from "./pages/post/PostPage";
+import PostCreatePage from "./pages/post/PostCreatePage";
+import PostDetailPage from "./pages/post/PostDetailPage";
 import Navigation from "./components/Navigation";
 import "./styles/App.css";
 
